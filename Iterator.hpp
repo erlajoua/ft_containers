@@ -9,7 +9,6 @@ namespace ft
     class VectorIterator
     {
         public:
-            //typedef random_access_iterator_tag iterator_category;
             typedef T value_type;
             typedef ptrdiff_t difference_type;
             typedef T* pointer;
@@ -132,30 +131,38 @@ namespace ft
             typedef T value_type;
             typedef T* pointer;
             typedef T& reference;
+
         public:
+
             ConstVectorIterator(void)
             {
             }
+
             ConstVectorIterator(pointer ptr)
             {
                 this->_ptr = ptr;
             }
+
             ConstVectorIterator(const ConstVectorIterator &other)
             {
                 *this = other;
             }
+
             ~ConstVectorIterator(void)
             {
             }
+
             ConstVectorIterator &operator=(const ConstVectorIterator &other)
             {
                 this->_ptr = other._ptr;
                 return (*this);
             }
+
             const value_type &operator*(void)
             {
                 return (*(this->_ptr));
             }
+
             const value_type &operator[](int n) const
             {
                 return (*(this->_ptr + n));
@@ -166,64 +173,78 @@ namespace ft
     class ReverseVectorIterator : public VectorIterator<T>
     {
         public:
+        
             typedef T value_type;
             typedef T* pointer;
             typedef T& reference;
         public:
+
             ReverseVectorIterator(void)
             {
             }
+
             ReverseVectorIterator(pointer ptr)
             {
                 this->_ptr = ptr;
             }
+
             ReverseVectorIterator(const ReverseVectorIterator &other)
             {
                 *this = other;
             }
+
             ~ReverseVectorIterator(void)
             {
             }
+
             ReverseVectorIterator &operator++()
             {
                 this->_ptr--;
                 return (*this);
             }
+
             ReverseVectorIterator operator++(int)
             {
                 ReverseVectorIterator tmp = *this;
                 this->_ptr--;
                 return (tmp);
             }
+
             ReverseVectorIterator &operator--()
             {
                 this->_ptr++;
                 return (*this);
             }
+
             ReverseVectorIterator operator--(int)
             {
                 ReverseVectorIterator tmp = *this;
                 this->_ptr++;
                 return (tmp);
             }
+
             ReverseVectorIterator operator+=(int n)
             {
                 this->_ptr += n;
                 return (*this);
             }
+
             ReverseVectorIterator operator-=(int n)
             {
                 this->_ptr -= n;
                 return (*this);
             }
+
             bool operator ==(const ReverseVectorIterator &other) const
             {
                 return (this->_ptr == other._ptr);
             }
+
             bool operator !=(const ReverseVectorIterator &other) const
             {
                 return (this->_ptr != other._ptr);
             }
+
             bool operator >(const ReverseVectorIterator &other) const
             {
                 return (this->_ptr > other._ptr);
@@ -232,34 +253,41 @@ namespace ft
             {
                 return (this->_ptr >= other._ptr);
             }
+
             bool operator <(const ReverseVectorIterator &other) const
             {
                 return (this->_ptr < other._ptr);
             }
+
             bool operator <=(const ReverseVectorIterator &other) const
             {
                 return (this->_ptr <= other._ptr);
             }
+
             value_type &operator *(void)
             {
                 return (*(this->_ptr));
             }
+
             value_type *operator ->(void)
             {
                 return (this->_ptr);
             }
+
             ReverseVectorIterator operator +(int n) const
             {
                 ReverseVectorIterator tmp = *this;
                 tmp._ptr -= n;
                 return (tmp);
             }
+
             ReverseVectorIterator operator -(int n) const
             {
                 ReverseVectorIterator tmp = *this;
                 tmp._ptr += n;
                 return (tmp);
             }
+
             value_type &operator[](int n) const
             {
                 return (*(this->_ptr - n -1));
@@ -273,29 +301,36 @@ namespace ft
             typedef T value_type;
             typedef T* pointer;
             typedef T& reference;
+            
             ConstReverseVectorIterator(void)
             {
             }
+
             ConstReverseVectorIterator(pointer ptr)
             {
                 this->_ptr = ptr;
             }
+
             ConstReverseVectorIterator(const ConstReverseVectorIterator &other)
             {
                 *this = other;
             }
+
             ~ConstReverseVectorIterator(void)
             {
             }
+
             ConstReverseVectorIterator &operator=(const ConstReverseVectorIterator &other)
             {
                 this->_ptr = other._ptr;
                 return (*this);
             }
+
             const value_type &operator*(void)
             {
                 return (*this->_ptr);
             }
+
             const value_type &operator[](int n) const
             {
                 return (*(this->_ptr - n));
