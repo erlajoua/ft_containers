@@ -70,37 +70,37 @@ namespace ft
 
         //relational operators
 
-        template<class stack_type, class container_type>
+        template <class stack_type, class container_type>
         friend bool operator ==(Stack<stack_type, container_type> const &lhs, Stack<stack_type, container_type> const &rhs)
         {
             return (lhs._container == rhs._container);
         }
 
-        template<class stack_type, class container_type>
+        template <class stack_type, class container_type>
         friend bool operator !=(Stack<stack_type, container_type> const &lhs, Stack<stack_type, container_type> const &rhs)
         {
             return (lhs._container != rhs._container);
         }
 
-        template<class stack_type, class container_type>
+        template <class stack_type, class container_type>
         friend bool operator <(Stack<stack_type, container_type> const &lhs, Stack<stack_type, container_type> const &rhs)
         {
             return (lhs._container < rhs._container);
         }
 
-        template<class stack_type, class container_type>
+        template <class stack_type, class container_type>
         friend bool operator <=(Stack<stack_type, container_type> const &lhs, Stack<stack_type, container_type> const &rhs)
         {
             return (lhs._container <= rhs._container);
         }
 
-        template<class stack_type, class container_type>
+        template <class stack_type, class container_type>
         friend bool operator >(Stack<stack_type, container_type> const &lhs, Stack<stack_type, container_type> const &rhs)
         {
             return (lhs._container > rhs._container);
         }
 
-        template<class stack_type, class container_type>
+        template <class stack_type, class container_type>
         friend bool operator >=(Stack<stack_type, container_type> const &lhs, Stack<stack_type, container_type> const &rhs)
         {
             return (lhs._container >= rhs._container);

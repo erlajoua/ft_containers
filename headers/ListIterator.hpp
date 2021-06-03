@@ -13,8 +13,10 @@ namespace ft
 			typedef T value_type;
 			typedef T& reference;
 			typedef Node<T>* pointer;
+			
 		protected:
 			pointer _ptr;
+
 		public:
 			ListIterator(void)
 			{
