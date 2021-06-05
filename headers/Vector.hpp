@@ -340,7 +340,84 @@ namespace ft
 			ft::swap(_container_size, other._container_size);
 			ft::swap(_container_length, other._container_length);
 		}
+
+		template<class vector_type, class Alloc>
+		friend bool operator !=(const Vector<vector_type, Alloc> &a, const Vector<vector_type, Alloc> &b);
+
+		template <class vector_type, class Alloc>
+		friend bool operator ==(const Vector<vector_type, Alloc> &a, const Vector<vector_type, Alloc> &b);
+
+
+		template <class vector_type, class Alloc>
+		friend bool operator <(const Vector<vector_type, Alloc> &a, const Vector<vector_type, Alloc> &b);
+
+		template <class vector_type, class Alloc>
+		friend bool operator <=(const Vector<vector_type, Alloc> &a, const Vector<vector_type, Alloc> &b);
+
+		template <class vector_type, class Alloc>
+		friend bool operator >(const Vector<vector_type, Alloc> &a, const Vector<vector_type, Alloc> &b);
+
+		template <class vector_type, class Alloc>
+		friend bool operator >=(const Vector<vector_type, Alloc> &a, const Vector<vector_type, Alloc> &b);
 	};
+	
+	template <class vector_type, class Alloc>
+	bool operator ==(const Vector<vector_type, Alloc> &a, const Vector<vector_type, Alloc> &b)
+	{
+			if (a.size() != b.size())
+				return (false);
+			unsigned long i = -1;
+			while (++i < a.size())
+			{
+				if (a[i] != b[i])
+					return (false);
+			}
+			return (true);
+	}
+
+	template<class vector_type, class Alloc>
+	bool operator !=(const Vector<vector_type, Alloc> &a, const Vector<vector_type, Alloc> &b)
+	{
+		return (!(a == b));
+	}
+
+	template <class vector_type, class Alloc>
+	bool operator <(const Vector<vector_type, Alloc> &a, const Vector<vector_type, Alloc> &b)
+	{
+		size_t		i;
+		size_t		n;
+
+		if (a.size() > b.size())
+			n = b.size();
+		else
+			n = a.size();
+		i = 0;
+		while (i < n)
+		{
+			if (a.at(i) != b.at(i))
+				return (a.at(i) < b.at(i));
+			i++;
+		}
+		return (a.size() < b.size());
+	}
+
+	template <class vector_type, class Alloc>
+	bool operator <=(const Vector<vector_type, Alloc> &a, const Vector<vector_type, Alloc> &b)
+	{
+		return (a < b || a == b);
+	}
+
+	template <class vector_type, class Alloc>
+	bool operator >(const Vector<vector_type, Alloc> &a, const Vector<vector_type, Alloc> &b)
+	{
+		return (!(a < b) && !(a == b));
+	}
+
+	template <class vector_type, class Alloc>
+	bool operator >=(const Vector<vector_type, Alloc> &a, const Vector<vector_type, Alloc> &b)
+	{
+		return (!(a < b));
+	}
 }
 
 #endif

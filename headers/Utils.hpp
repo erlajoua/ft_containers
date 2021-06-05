@@ -20,6 +20,16 @@ namespace ft
         Node *prev;
         Node *next;
     };
+    
+    template <class Key, class T>
+	struct BNode
+	{
+		std::pair<Key, T> pair;
+		BNode *left;
+		BNode *right;
+		BNode *parent;
+		bool end;
+	};
 }
 
 #endif
