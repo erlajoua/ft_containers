@@ -30,17 +30,18 @@ namespace ft
 			class value_compare
 			{
 				friend class map;
-				protected:
-					Compare comp;
-					value_compare (Compare c) : comp(c) {};
 				public:
+					Compare comp;
+					value_compare (Compare c) : comp(c)
+					{
+					}
 					typedef bool result_type;
 					typedef value_type first_argument_type;
 					typedef value_type second_argument_type;
 					bool operator() (const value_type& x, const value_type& y) const
 					{
 						return comp(x.first, y.first);
-					};
+					}
 			};
 
 		private:
@@ -365,7 +366,7 @@ namespace ft
 
 			value_compare value_comp(void) const
 			{
-				return (this->value_compare);
+				return (Compare());
 			}
 
 			iterator find(const key_type &value)
@@ -407,7 +408,7 @@ namespace ft
 				iterator it = begin();
 				while (it != end())
 				{
-					if (this->_comp(it->first, key) <= 0)
+					if (_comp(it->first, key) <= 0)
 						return (it);
 					++it;
 				}
@@ -419,7 +420,7 @@ namespace ft
 				const_iterator it = begin();
 				while (it != end())
 				{
-					if (this->_comp(it->first, key) <= 0)
+					if (_comp(it->first, key) <= 0)
 						return (it);
 					++it;
 				}
@@ -431,7 +432,7 @@ namespace ft
 				iterator it = begin();
 				while (it != end())
 				{
-					if (it->first != key && this->_comp(it->first, key) <= 0)
+					if (it->first != key && _comp(it->first, key) <= 0)
 						return (it);
 					++it;
 				};
@@ -443,7 +444,7 @@ namespace ft
 				const_iterator it = begin();
 				while (it != end())
 				{
-					if (it->first != key && this->_comp(it->first, key) <= 0)
+					if (it->first != key && _comp(it->first, key) <= 0)
 						return (it);
 					++it;
 				};
@@ -452,19 +453,39 @@ namespace ft
 
 			std::pair<const_iterator, const_iterator> equal_range(const key_type &k) const
 			{
-				return (std::pair<const_iterator, const_iterator>(this->lower_bound(k), this->upper_bound(k)));
+				return (std::pair<const_iterator, const_iterator>(lower_bound(k), upper_bound(k)));
 			}
 
 			std::pair<iterator, iterator> equal_range(const key_type &k)
 			{
-				return (std::pair<iterator, iterator>(this->lower_bound(k), this->upper_bound(k)));
+				return (std::pair<iterator, iterator>(lower_bound(k), upper_bound(k)));
 			}
+
+			template <class key_map, class mapped_value, class comparaison, class allocator>
+			friend bool operator==(const Map <key_map, mapped_value, comparaison, allocator> &lhs, const Map <key_map, mapped_value, comparaison, allocator> &rhs);
+
+			template <class key_map, class mapped_value, class comparaison, class allocator>
+			friend bool operator!=(const Map <key_map, mapped_value, comparaison, allocator> &lhs, const Map <key_map, mapped_value, comparaison, allocator> &rhs);
+
+			template <class key_map, class mapped_value, class comparaison, class allocator>
+			friend bool operator>(const Map <key_map, mapped_value, comparaison, allocator> &lhs, const Map <key_map, mapped_value, comparaison, allocator> &rhs);
+
+			template <class key_map, class mapped_value, class comparaison, class allocator>
+			friend bool operator<(const Map <key_map, mapped_value, comparaison, allocator> &lhs, const Map <key_map, mapped_value, comparaison, allocator> &rhs);
+
+			template <class key_map, class mapped_value, class comparaison, class allocator>
+			friend bool operator>=(const Map <key_map, mapped_value, comparaison, allocator> &lhs, const Map <key_map, mapped_value, comparaison, allocator> &rhs);
+
+			template <class key_map, class mapped_value, class comparaison, class allocator>
+			friend bool operator<=(const Map <key_map, mapped_value, comparaison, allocator> &lhs, const Map<key_map, mapped_value, comparaison, allocator> &rhs);
 	};
+
 	template <class Key, class T, class Compare, class Alloc>
 	void swap(ft::Map<Key, T, Compare, Alloc> &x, ft::Map<Key, T, Compare, Alloc> &y)
 	{
 		x.swap(y);
-	};
+	}
+	
 	template <class Key, class T, class Compare, class Alloc>
 	bool operator==(const Map<Key, T, Compare, Alloc> &lhs, const Map<Key, T, Compare, Alloc> &rhs)
 	{
@@ -480,12 +501,14 @@ namespace ft
 			++it;
 		}
 		return (true);
-	};
+	}
+
 	template <class Key, class T, class Compare, class Alloc>
 	bool operator!=(const Map<Key, T, Compare, Alloc> &lhs, const Map<Key, T, Compare, Alloc> &rhs)
 	{
 		return (!(lhs == rhs));
-	};
+	}
+
 	template <class Key, class T, class Compare, class Alloc>
 	bool operator>(const Map<Key, T, Compare, Alloc> &lhs, const Map<Key, T, Compare, Alloc> &rhs)
 	{
@@ -501,22 +524,25 @@ namespace ft
 			++it;
 		}
 		return (false);
-	};
+	}
+
 	template <class Key, class T, class Compare, class Alloc>
 	bool operator<(const Map<Key, T, Compare, Alloc> &lhs, const Map<Key, T, Compare, Alloc> &rhs)
 	{
 		return (!(lhs > rhs) && !(lhs == rhs));
-	};
+	}
+
 	template <class Key, class T, class Compare, class Alloc>
 	bool operator>=(const Map<Key, T, Compare, Alloc> &lhs, const Map<Key, T, Compare, Alloc> &rhs)
 	{
 		return (!(lhs < rhs));
-	};
+	}
+
 	template <class Key, class T, class Compare, class Alloc>
 	bool operator<=(const Map<Key, T, Compare, Alloc> &lhs, const Map<Key, T, Compare, Alloc> &rhs)
 	{
 		return (!(lhs > rhs));
-	};
+	}
 };
 
 #endif
