@@ -464,6 +464,24 @@ namespace ft
 					tmp.push_front(*(it++));
 				*this = tmp;
 			}
+
+			template <class list_type>
+			friend bool operator ==(List<list_type> const &lhs, List<list_type> const &rhs);
+
+			template <class list_type>
+			friend bool operator !=(List<list_type> const &lhs, List<list_type> const &rhs);
+
+			template <class list_type>
+			friend bool operator <(List<list_type> const &lhs, List<list_type> const &rhs);
+
+			template<class list_type>
+			friend bool operator <=(List<list_type> const &lhs, List<list_type> const &rhs);
+
+			template<class list_type>
+			friend bool operator >(List<list_type> const &lhs, List<list_type> const &rhs);
+
+			template<class list_type>
+			friend bool operator >=(List<list_type> const &lhs, List<list_type> const &rhs);
 	};
 
 	template <class T, class Alloc>
@@ -472,8 +490,10 @@ namespace ft
 		x.swap(y);
 	}
 
-	template<typename T>
-	bool operator==(List<T> const &lhs, List<T> const &rhs)
+	//overloads non members
+
+	template <typename T>
+	bool operator ==(List<T> const &lhs, List<T> const &rhs)
     {
 		if (lhs.size() != rhs.size())
 			return (false);
@@ -489,14 +509,14 @@ namespace ft
 		return true;
 	}
 
-	template<typename T>
-	bool operator!=(List<T> const &lhs, List<T> const &rhs)
+	template <typename T>
+	bool operator !=(List<T> const &lhs, List<T> const &rhs)
     {
 		return (!(lhs == rhs));
 	}
 
-	template<typename T>
-	bool operator<(List<T> const &lhs, List<T> const &rhs)
+	template <typename T>
+	bool operator <(List<T> const &lhs, List<T> const &rhs)
     {
 		if (lhs.size() < rhs.size())
 			return (true);
@@ -515,19 +535,19 @@ namespace ft
 	}
 
 	template<typename T>
-	bool operator<=(List<T> const &lhs, List<T> const &rhs)
+	bool operator <=(List<T> const &lhs, List<T> const &rhs)
     {
 		return (!(rhs < lhs));
 	}
 
 	template<typename T>
-	bool operator>(List<T> const &lhs, List<T> const &rhs)
+	bool operator >(List<T> const &lhs, List<T> const &rhs)
     {
 		return (rhs < lhs);
 	}
 
 	template<typename T>
-	bool operator>=(List<T> const &lhs, List<T> const &rhs)
+	bool operator >=(List<T> const &lhs, List<T> const &rhs)
     {
 		return (!(lhs < rhs));
 	}

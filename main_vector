@@ -211,6 +211,7 @@ int main(void)
 	//@overloads non-members
 
 	std::cout << "\n=== OVERLOADS NON-MEMBERS ===\n\n";
+
 	ft::Vector<float> vec1;
 	ft::Vector<float> vec2;
 
@@ -228,6 +229,8 @@ int main(void)
 		std::cout << "Is not equal\n";
 	else
 		std::cout << "Equal\n";	
+
+    std::cout << "\n";
 
 	ft::Vector<std::string> vec3;
 	ft::Vector<std::string> vec4;

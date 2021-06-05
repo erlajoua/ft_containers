@@ -341,6 +341,8 @@ namespace ft
 			ft::swap(_container_length, other._container_length);
 		}
 
+		//overloads non member
+
 		template<class vector_type, class Alloc>
 		friend bool operator !=(const Vector<vector_type, Alloc> &a, const Vector<vector_type, Alloc> &b);
 
@@ -361,6 +363,8 @@ namespace ft
 		friend bool operator >=(const Vector<vector_type, Alloc> &a, const Vector<vector_type, Alloc> &b);
 	};
 	
+	//overloads non member
+
 	template <class vector_type, class Alloc>
 	bool operator ==(const Vector<vector_type, Alloc> &a, const Vector<vector_type, Alloc> &b)
 	{

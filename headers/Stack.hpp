@@ -68,7 +68,7 @@ namespace ft
             _container.pop_back();
         }
 
-        //relational operators
+        //overloads non member
 
         template <class stack_type, class container_type>
         friend bool operator ==(Stack<stack_type, container_type> const &lhs, Stack<stack_type, container_type> const &rhs);
@@ -88,6 +88,8 @@ namespace ft
         template <class stack_type, class container_type>
         friend bool operator >=(Stack<stack_type, container_type> const &lhs, Stack<stack_type, container_type> const &rhs);
     };
+
+    //overloads non member
 
     template <class stack_type, class container_type>
     bool operator ==(Stack<stack_type, container_type> const &lhs, Stack<stack_type, container_type> const &rhs)

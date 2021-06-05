@@ -68,6 +68,8 @@ int main(void)
         std::cout << "Equal\n";
 
     //
+    std::cout << "\n";
+
 
     c.push(4);
 

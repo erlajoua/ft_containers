@@ -287,5 +287,49 @@ int main(void)
     unique_list.unique (same_integral_part);
     print_list(unique_list);
 
+    //@overloads non-member
+
+    std::cout << "\n=== OVERLAODS NON MEMBERS ===\n\n";
+
+    ft::List<float> lst1;
+    ft::List<float> lst2;
+
+	if (lst1 == lst2)
+		std::cout << "Equal\n";
+	else
+		std::cout << "Not equal\n";
+
+	if (lst1 > lst2)
+		std::cout << "Superior strict\n";
+	else
+		std::cout << "Inferior or equal\n";
+
+	if (lst1 != lst2)
+		std::cout << "Is not equal\n";
+	else
+		std::cout << "Equal\n";
+
+    std::cout << "\n";
+
+    ft::List<std::string> lst3;
+    ft::List<std::string> lst4;
+
+    lst3.push_back("salut");
+    lst4.push_back("salvt");
+
+    if (lst3 == lst4)
+		std::cout << "Equal\n";
+	else
+		std::cout << "Not equal\n";
+
+	if (lst3 > lst4)
+		std::cout << "Superior strict\n";
+	else
+		std::cout << "Inferior or equal\n";
+
+	if (lst3 != lst4)
+		std::cout << "Is not equal\n";
+	else
+
     return 0;
 }

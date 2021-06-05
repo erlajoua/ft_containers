@@ -1,9 +1,0 @@
-VECTOR_HPP
-
-overloads non member
-
-LIST_HPP
-
-overloads non members
-relational operators(list)
-swap(list)
