@@ -1,6 +1,4 @@
-#include "Vector.hpp"
-#include "Iterator.hpp"
-
+#include "headers/Vector.hpp"
 
 void print_intvc(ft::Vector<int> &vc)
 {
@@ -209,5 +207,48 @@ int main(void)
 	std::cout << "   Size = " << test1.size() << '\n';
 	std::cout << "   Capacity = " << test1.capacity() << '\n';
 	std::cout << "   Pointer after swap = " << *itera << '\n';
-	return (0);
+
+	//@overloads non-members
+
+	std::cout << "\n=== OVERLOADS NON-MEMBERS ===\n\n";
+	ft::Vector<float> vec1;
+	ft::Vector<float> vec2;
+
+	if (vec1 == vec2)
+		std::cout << "Equal\n";
+	else
+		std::cout << "Not equal\n";
+	
+	if (vec1 > vec2)
+		std::cout << "Superior strict\n";
+	else
+		std::cout << "Inferior or equal\n";
+
+	if (vec1 != vec2)
+		std::cout << "Is not equal\n";
+	else
+		std::cout << "Equal\n";	
+
+	ft::Vector<std::string> vec3;
+	ft::Vector<std::string> vec4;
+
+	vec3.push_back("salut");
+	vec4.push_back("salvt");
+
+	if (vec3 == vec4)
+		std::cout << "Equal\n";
+	else
+		std::cout << "Not equal\n";
+	
+	if (vec3 > vec4)
+		std::cout << "Superior strict\n";
+	else
+		std::cout << "Inferior or equal\n";
+
+	if (vec3 != vec4)
+		std::cout << "Is not equal\n";
+	else
+		std::cout << "Equal\n";
+
+	return 0;
 }
