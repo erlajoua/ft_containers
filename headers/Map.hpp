@@ -1,8 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Map.hpp                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: erlajoua <erlajoua@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/06/07 10:29:03 by erlajoua          #+#    #+#             */
+/*   Updated: 2021/06/07 10:29:03 by erlajoua         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef MAP_HPP
 # define MAP_HPP
 # include <memory>
 # include <functional>
 # include <limits>
+# include <cstdlib>
 # include <utility>
 # include "MapIterator.hpp"
 
@@ -29,7 +42,7 @@ namespace ft
 			typedef ConstReverseMapIterator<key_type, mapped_type> const_reverse_iterator;
 			class value_compare
 			{
-				friend class map;
+				class map;
 				public:
 					Compare comp;
 					value_compare (Compare c) : comp(c)
@@ -50,25 +63,15 @@ namespace ft
 			node _root;
 			size_type _length;
 
-			void _debug_tree(node n)
+			node _init_node(key_type key, mapped_type value, node parent, bool end = false)
 			{
-				if (!n)
-					return;
-				_debug_tree(n->left);
-				if (n->parent && !n->end)
-					std::cout << n->pair.first << "=" << n->pair.second << std::endl;
-				_debug_tree(n->right);
-			}
-
-			node _new_node(key_type key, mapped_type value, node parent, bool end = false)
-			{
-				node el = new BNode<key_type, mapped_type>();
-				el->pair = std::make_pair(key, value);
-				el->right = 0;
-				el->left = 0;
-				el->parent = parent;
-				el->end = end;
-				return (el);
+				node tmp = new BNode <key_type, mapped_type>();
+				tmp->pair = std::make_pair(key, value);
+				tmp->right = 0;
+				tmp->left = 0;
+				tmp->parent = parent;
+				tmp->end = end;
+				return (tmp);
 			}
 
 			void _free_tree(node n)
@@ -80,55 +83,55 @@ namespace ft
 				delete n;
 			}
 
-			node _insert_node(node n, key_type key, mapped_type value, bool end = false)
+			node _insert_btree(node n, key_type key, mapped_type value, bool end = false)
 			{
 				if (n->end)
 				{
 					if (!n->left)
 					{
-						n->left = _new_node(key, value, n, end);
+						n->left = _init_node(key, value, n, end);
 						return (n->left);
 					}
-					return (_insert_node(n->left, key, value));
+					return (_insert_btree(n->left, key, value));
 				}
-				if (key < n->pair.first && !end)
+				if (key < n->pair.first && end == false)
 				{
 					if (!n->left)
 					{
-						n->left = _new_node(key, value, n, end);
+						n->left = _init_node(key, value, n, end);
 						return (n->left);
 					}
 					else
-						return (_insert_node(n->left, key, value));
+						return (_insert_btree(n->left, key, value));
 				}
 				else
 				{
-					if (!n->right)
+					if (n->right == NULL)
 					{
-						n->right = _new_node(key, value, n, end);
+						n->right = _init_node(key, value, n, end);
 						return (n->right);
 					}
 					else
-						return(_insert_node(n->right, key, value));
+						return (_insert_btree(n->right, key, value));
 				}
 			}
 
 			node _find(node n, key_type key) const
 			{
 				node tmp;
-				if (!n->end && n->pair.first == key && n->parent)
+				if (n->end == false && n->parent != 0 && n->pair.first == key)
 					return (n);
-				if (n->right)
+				if (n->right != NULL)
 				{
 					if ((tmp = _find(n->right, key)))
 						return (tmp);
 				}
-				if (n->left)
+				if (n->left != NULL)
 				{
 					if ((tmp = _find(n->left, key)))
 						return (tmp);
 				}
-				return (0);
+				return 0;
 			}
 
 			void _delete_node(node n)
@@ -172,10 +175,11 @@ namespace ft
 
 			void _init_tree(void)
 			{
-				_root = _new_node(key_type(), mapped_type(), 0);
-				_root->right  = _new_node(key_type(), mapped_type(), _root, true);
+				_root = _init_node(key_type(), mapped_type(), 0);
+				_root->right  = _init_node(key_type(), mapped_type(), _root, true);
 				_length = 0;
 			}
+
 			node _end(void) const
 			{
 				return (_root->right);
@@ -279,7 +283,7 @@ namespace ft
 
 			size_type size(void) const
 			{
-				return (_length);
+				return _length;
 			}
 
 			size_type max_size(void) const
@@ -291,9 +295,7 @@ namespace ft
 			{
 				iterator tmp = find(k);
 				if (tmp != end())
-				{
 					return tmp->second;
-				}
 				return (insert(std::make_pair(k, mapped_type())).first->second);
 			}
 
@@ -302,8 +304,8 @@ namespace ft
 				iterator tmp;
 				if ((tmp = find(value.first)) != end())
 					return (std::make_pair(tmp, false));
-				++_length;
-				return (std::make_pair(iterator(_insert_node(_root, value.first, value.second)), true));
+				_length++;
+				return (std::make_pair(iterator(_insert_btree(_root, value.first, value.second)), true));
 			}
 
 			iterator insert(iterator position, const value_type &value)
@@ -311,8 +313,8 @@ namespace ft
 				iterator tmp;
 				if ((tmp = find(value.first)) != end())
 					return (tmp);
-				++_length;
-				return (iterator(_insert_node(position.node(), value.first, value.second)));
+				_length++;
+				return (iterator(_insert_btree(position.node(), value.first, value.second)));
 			}
 
 			template <class InputIterator>
@@ -321,15 +323,16 @@ namespace ft
 				while (first != last)
 				{
 					insert(*first);
-					++first;
+					first++;
 				}
 			}
 
 			void erase(iterator position)
 			{
 				_delete_node(position.node());
-				--_length;
-			};
+				_length--;
+			}
+			
 			size_type erase(const key_type &value)
 			{
 				int i = 0;
@@ -337,7 +340,7 @@ namespace ft
 				while ((item = find(value)) != end())
 				{
 					erase(item);
-					++i;
+					i++;
 				};
 				return (i);
 			}
@@ -397,8 +400,8 @@ namespace ft
 				while (it != end())
 				{
 					if (it->first == value)
-						++c;
-					++it;
+						c++;
+					it++;
 				}
 				return (c);
 			}
@@ -410,7 +413,7 @@ namespace ft
 				{
 					if (_comp(it->first, key) <= 0)
 						return (it);
-					++it;
+					it++;
 				}
 				return (end());
 			}
@@ -422,7 +425,7 @@ namespace ft
 				{
 					if (_comp(it->first, key) <= 0)
 						return (it);
-					++it;
+					it++;
 				}
 				return (end());
 			}
@@ -434,7 +437,7 @@ namespace ft
 				{
 					if (it->first != key && _comp(it->first, key) <= 0)
 						return (it);
-					++it;
+					it++;
 				};
 				return (end());
 			}
@@ -446,7 +449,7 @@ namespace ft
 				{
 					if (it->first != key && _comp(it->first, key) <= 0)
 						return (it);
-					++it;
+					it++;
 				};
 				return (end());
 			}
@@ -496,9 +499,9 @@ namespace ft
 		while (it != rhs.end())
 		{
 			if (*it != *it2)
-				return (false);
-			++it2;
-			++it;
+				return false;
+			it2++;
+			it++;
 		}
 		return (true);
 	}
@@ -519,11 +522,11 @@ namespace ft
 		while (it != lhs.end() && it2 != rhs.end())
 		{
 			if (*it > *it2)
-				return (true);
-			++it2;
-			++it;
+				return true;
+			it2++;
+			it++;
 		}
-		return (false);
+		return false;
 	}
 
 	template <class Key, class T, class Compare, class Alloc>

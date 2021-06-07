@@ -1,5 +1,17 @@
-#include <iostream>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main_list.cpp                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: erlajoua <erlajoua@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/06/07 10:29:28 by erlajoua          #+#    #+#             */
+/*   Updated: 2021/06/07 10:29:28 by erlajoua         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "headers/List.hpp"
+#include <iostream>
 #include <vector>
 
 template <typename T>
@@ -21,7 +33,7 @@ bool mycomparison (double first, double second)
 
 //
 
-int main(void)
+void main_list(void)
 {
     //@constructors, @size, @empty, @max_size
 
@@ -330,6 +342,5 @@ int main(void)
 	if (lst3 != lst4)
 		std::cout << "Is not equal\n";
 	else
-
-    return 0;
+		std::cout << "Equal\n";
 }

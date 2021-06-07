@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main_vector.cpp                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: erlajoua <erlajoua@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/06/07 10:29:34 by erlajoua          #+#    #+#             */
+/*   Updated: 2021/06/07 10:29:36 by erlajoua         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "headers/Vector.hpp"
 
 void print_intvc(ft::Vector<int> &vc)
@@ -8,7 +20,7 @@ void print_intvc(ft::Vector<int> &vc)
 	std::cout << '\n';
 }
 
-int main(void)
+void main_vector(void)
 {
 	//@constructors
 	
@@ -252,6 +264,4 @@ int main(void)
 		std::cout << "Is not equal\n";
 	else
 		std::cout << "Equal\n";
-
-	return 0;
 }

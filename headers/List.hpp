@@ -1,8 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   List.hpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: erlajoua <erlajoua@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/06/07 10:29:01 by erlajoua          #+#    #+#             */
+/*   Updated: 2021/06/07 10:29:02 by erlajoua         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef LIST_HPP
 # define LIST_HPP
 
 # include <memory>
 # include <limits>
+# include <stdlib.h>
 # include "ListIterator.hpp"
 # include "Enable_if.hpp"
 

@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main_stack.cpp                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: erlajoua <erlajoua@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/06/07 10:29:33 by erlajoua          #+#    #+#             */
+/*   Updated: 2021/06/07 10:29:33 by erlajoua         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <iostream>
 #include <deque>
 #include <vector>
 #include "headers/Stack.hpp"
 
-int main(void)
+void main_stack(void)
 {
     std::cout << "=== CONSTRUCTORS, EMPTY ===\n" << '\n';
     ft::Stack<char> first;
@@ -95,6 +107,4 @@ int main(void)
         std::cout << "c > d\n";
     else
         std::cout << "c <= d\n";
-    
-    return 0;
 }

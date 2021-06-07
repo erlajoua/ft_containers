@@ -1,6 +1,18 @@
-NAME = ft_container
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: erlajoua <erlajoua@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2021/06/07 10:29:48 by erlajoua          #+#    #+#              #
+#    Updated: 2021/06/07 10:29:49 by erlajoua         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
-SRCS = main.cpp
+NAME = ft_containers
+
+SRCS = main.cpp main_list.cpp main_stack.cpp main_queue.cpp main_vector.cpp main_map.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 

@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main_queue.cpp                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: erlajoua <erlajoua@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/06/07 10:29:32 by erlajoua          #+#    #+#             */
+/*   Updated: 2021/06/07 10:29:32 by erlajoua         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <iostream>
 #include <vector>
 #include "headers/Queue.hpp"
 
-int main(void)
+void main_queue(void)
 {
     std::cout << "=== CONSTRUCTORS, EMPTY ===\n" << '\n';
     ft::Queue<char> first;
@@ -88,6 +100,4 @@ int main(void)
         std::cout << "c > d\n";
     else
         std::cout << "c <= d\n";
-    
-    return 0;
 }

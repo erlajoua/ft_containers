@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Vector.hpp                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: erlajoua <erlajoua@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/06/07 10:29:09 by erlajoua          #+#    #+#             */
+/*   Updated: 2021/06/07 10:29:10 by erlajoua         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef VECTOR_HPP
 # define VECTOR_HPP
 
@@ -348,7 +360,6 @@ namespace ft
 
 		template <class vector_type, class Alloc>
 		friend bool operator ==(const Vector<vector_type, Alloc> &a, const Vector<vector_type, Alloc> &b);
-
 
 		template <class vector_type, class Alloc>
 		friend bool operator <(const Vector<vector_type, Alloc> &a, const Vector<vector_type, Alloc> &b);
